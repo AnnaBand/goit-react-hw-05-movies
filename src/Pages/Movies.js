@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { getMoviesByKeyword } from '../API/Api';
-import styles from './Movies.module.css'; // Importujemy style dla plakatów
+import styles from './Movies.module.css';
 
 const SearchMovies = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
-  const [searched, setSearched] = useState(false); // Dodajemy stan, który określa, czy przeprowadzono już wyszukiwanie
+  const [searched, setSearched] = useState(false);
   const location = useLocation();
 
   const handleSearch = async (e) => {
@@ -19,24 +19,24 @@ const SearchMovies = () => {
     try {
       const movies = await getMoviesByKeyword(searchQuery);
       setSearchResults(movies);
-      setSearched(true); // Ustawiamy stan, że wyszukiwanie zostało przeprowadzone
+      setSearched(true);
     } catch (error) {
       console.error('Error searching movies:', error);
       setSearchResults([]);
-      setSearched(true); // Ustawiamy stan, że wyszukiwanie zostało przeprowadzone, nawet jeśli nie ma wyników
+      setSearched(true);
     }
   };
 
   return (
     <div>
-      <form onSubmit={handleSearch}>
+      <form onSubmit={handleSearch} className={styles['search-container']}>
         <input
           type="text"
           placeholder="Search for movies..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
-        <button type="submit">Search</button>
+        <button type="submit" className={styles['search-button']}>Search</button>
       </form>
 
       {searched && searchResults.length === 0 && (

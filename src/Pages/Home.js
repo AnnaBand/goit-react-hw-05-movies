@@ -13,7 +13,7 @@ const Home = () => {
 
   return (
     <>
-      <h1>Trending today</h1>
+      <h1 className={styles.heading}>Trending today</h1>
       <div className={styles['movies-list']}>
         {trendingMovies.map(movie => (
           <NavLink key={movie.id} to={`/movies/${movie.id}`} state={{ from: location }}>
