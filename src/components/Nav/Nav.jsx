@@ -5,10 +5,12 @@ import s from './Nav.module.css';
 const Nav = () => {
   return (
     <nav className={s.navigation}>
-      <NavLink className={s.link} to="/">
+      <NavLink className={({ isActive }) => (isActive ? s['link-active'] : s.link)}
+        to="/">
         Home
       </NavLink>
-      <NavLink className={s.link} to="/movies">
+      <NavLink className={({ isActive }) => (isActive ? s['link-active'] : s.link)}
+        to="/movies">
         Movies
       </NavLink>
     </nav>
